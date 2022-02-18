@@ -85,7 +85,11 @@ fichier ``/proc/cpuinfo``.
 
 ### Step 2a: Mappings partagés d'un même fichier
 
-* Créez un fichier de 8ko.
+* Créez un fichier de 8ko. Vous pouvez utiliser la commande suivante (avec les bons paramètres)
+``
+ dd if=/dev/zero of=fichier count=100000 bs=1000
+``
+
 
 * Écrivez un programme qui projette (``mmap``) trois fois ce fichier dans un même
 processus de manière publique (``MAP_SHARED``).
