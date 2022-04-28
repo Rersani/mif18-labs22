@@ -14,12 +14,11 @@
 * Pour ce TP, vous aurez besoin de travailler sur un système Linux. Si
   vous n'avez pas de système de ce type installé sur votre machine,
   vous pouvez tenter d'utiliser une machine virtuelle ou WSL, sans
-  garantie de la part de l'auteur de ce sujet. La solution la plus
-  consistante est de se connecter à une machine distante de Lyon 1.
+  garantie de la part de l'auteur de ce sujet.
 
 * Les comportements observés dans ce TP ne sont pas forcément
   reproductibles d'un système à un autre, selon la version du noyau
-  Linux par exemple. Il sera intéressant de noter vos configurations, donc.
+  Linux par exemple.
 
 * Lors de vos expériences, essayez d'avoir peu de programmes
   "gourmands" qui tournent sur votre machine, afin que les résultats
@@ -102,8 +101,7 @@ priorités fonctionnent.
   fait les `N` appels à `sched_yield()`. Commentez. Quel est le temps
   d'un changement de contexte avec une seule instance du programme ?
   Avec plusieurs instances? Faites un dessin pour expliquer ce qu'il
-  se passe avec trois instances du programme (un dessin à la main avec
-  une photo dans le rapport sera suffisant).
+  se passe avec trois instances du programme.
 
 
 * Comment le coût d'un changement de contexte va t-il jouer sur les
@@ -127,20 +125,18 @@ priorités fonctionnent.
 * Expliquez le comportement observé quand vous lancez une ou deux
   instances de ce programme (toujours sur le même processeur).
 
-* Tracez un graphe montrant l'évolution de la _timeslice_ en fonction
-  de la priorité. Avec deux instances du programme, vous ne jouerez
-  qu'avec la priorité d'une des instances. Vous livrerez le code vous
-  permettant de faire ce graphe en complétant le programme python
-  `analyze_ex3.py`. Le code fourni permet via la fonction
-  `acquire_results()` de lancer deux instances du programme dont une
-  avec une priorité variable (de 0 à 19). Après une attente de 20
-  secondes, les deux processus sont tués. Il vous est demandé de
-  compléter ce code afin de parser les fichiers générés par votre
-  executable `ex3`. Le code pour afficher les courbes est également
-  fourni mais vous pouvez bien évidemment le modifier. Vous utiliserez
-  `python3 analyze_ex3.py` pour lancer les expériences (cela prendra
-  du temps) et `python3 analyze_ex3.py parse` pour parser et afficher
-  les données.
+* [Si vous avez le temps, sinon faites des tests "à la main"] Tracez
+  un graphe montrant l'évolution de la _timeslice_ en fonction de la
+  priorité. Avec deux instances du programme, vous ne jouerez qu'avec
+  la priorité d'une des instances. Le code fourni dans le programme
+  python `analyze_ex3.py` permet via la fonction `acquire_results()`
+  de lancer deux instances du programme dont une avec une priorité
+  variable (de 0 à 19). Après une attente de 20 secondes, les deux
+  processus sont tués. Il vous est demandé de compléter ce code afin
+  de parser les fichiers générés par votre executable `ex3`. Vous
+  utiliserez `python3 analyze_ex3.py` pour lancer les expériences
+  (cela prendra du temps) et `python3 analyze_ex3.py parse` pour
+  parser et afficher les données.
   
 * Qu'en concluez vous ?
 
