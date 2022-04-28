@@ -100,7 +100,7 @@ priorités fonctionnent.
   en tâche de fond et prendre le temps après 10 tours de boucle qui
   fait les `N` appels à `sched_yield()`. Commentez. Quel est le temps
   d'un changement de contexte avec une seule instance du programme ?
-  Avec plusieurs instances? Faites un dessin pour expliquer ce qu'il
+  Avec plusieurs instances ? Faites un dessin pour expliquer ce qu'il
   se passe avec trois instances du programme.
 
 
