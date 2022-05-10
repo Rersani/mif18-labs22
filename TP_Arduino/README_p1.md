@@ -1,4 +1,4 @@
-# MIF18-Lab 5: Scheduling on Arduino -- first part
+# MIF18 : Scheduling on Arduino -- first part
 
   * Grégoire Pichon, Université Lyon 1, LIP [email](mailto:gregoire.pichon@univ-lyon1.fr)
   * Version: 2022
