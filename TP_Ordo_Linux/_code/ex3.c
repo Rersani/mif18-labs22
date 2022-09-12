@@ -8,7 +8,7 @@
 #include <signal.h>
 
 /*MIF18 : Lab 5 Linux Scheduling, ex3*/
-/* Grégoire Pichon, 2021 */
+/* Grégoire Pichon, 2022 */
 
 #define ONE_MILLION 1000000 // pour convertir les secondes en microsecondes
 

@@ -148,6 +148,9 @@ priorités fonctionnent.
   coeur) un processus mono-threadé qui fait une boucle infinie et un
   processus multi-threadé où chaque thread fait une boucle infinie.
 
+* Vous pouvez partir du fichier `ex2_bis.c` afin d'avoir une base de
+  code qui créé les threads pour vous.
+
 * Mesurez les changements de contexte. Que se passe t-il ? Vous pouvez
   vérifier qui a la main après chaque appel à `sched_yield()` en
   ajoutant de l'affichage. Attention de bien l'enlever quand vous voulez

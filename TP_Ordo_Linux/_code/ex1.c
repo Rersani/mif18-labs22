@@ -5,7 +5,7 @@
 #include <sched.h>
 
 /*MIF18 : Lab 5 Linux Scheduling, ex1*/
-/* Grégoire Pichon, 2021 */ 
+/* Grégoire Pichon, 2022 */ 
 
 int main(){
   // TODO : boucle infinie active

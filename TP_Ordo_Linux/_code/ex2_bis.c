@@ -7,8 +7,8 @@
 #include <pthread.h>
 #include <syscall.h>
 
-/*MIF18 : Lab 5 Linux Scheduling, ex2*/
-/* Grégoire Pichon, 2021 */ 
+/*MIF18 : Lab 5 Linux Scheduling, ex2 version threads*/
+/* Grégoire Pichon, 2022 */ 
 
 #define NB_CALLS 100000
 #define ONE_MILLION 1000000 // pour convertir les secondes en microsecondes
@@ -37,7 +37,7 @@ void* work(void *useless){
 int main(){
 
   int i;
-  int nb = 4; //nb à passer en parametre pour modifier le nombre de threads
+  int nb = 4; // Nombre de threads à passer en paramètre du programme
   pthread_t t[nb];
   for (i=0; i<nb; i++){
     pthread_create(&t[i], NULL, &work, NULL);
