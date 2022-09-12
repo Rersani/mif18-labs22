@@ -23,7 +23,7 @@ void* work(void *useless){
     
     gettimeofday(&startTime, NULL);
 
-    // TODO : boucle infinie qui effectue NB_CALLS appels à sched_yield
+    // TODO : boucle qui effectue NB_CALLS appels à sched_yield
     // (3 lignes)
 
     gettimeofday(&endTime, NULL);
