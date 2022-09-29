@@ -29,7 +29,7 @@
 
 * Dans ce TP, vous implémenterez un ordonnanceur simple pour Arduino en utilisant des timers et des interruptions
 
-* Commencez par faire le startup : [startup](_startup_part2.md)
+* Commencez par faire le [startup](_startup_part2.md)
 
 ## Step 1 : 2 leds en parallèle, avec des timers
 
@@ -42,7 +42,7 @@ le suivant: led rouge sur analog 0, led jaune sur analog 1. On utilisera
 DDRC et PORTC (de manière similaire à DDRB et PORTB dans la partie 1).
 
 Afin de faire clignoter la LED jaune toutes les 400 ms en parallèle de
-la LED rouge,  nous allons utiliser un timer~:
+la LED rouge,  nous allons utiliser un timer:
 * Le main continue d'allumer la LED rouge comme dans le TP précédent.
 * Toutes les 400 ms, une fonction d'interruption sera
   appelée. Elle réalisera le changement d'état de la LED jaune, puis
