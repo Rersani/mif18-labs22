@@ -4,7 +4,7 @@
   * Version: 2022
   * Auteur original: Laure Gonnord
   * Inspiré d'un TP de Julien Forget et Thomas Vantroys, Lille
-  * Autre collaborateur: Thierry Excoffier (Lyon1).
+  * Autre collaborateur: Thierry Excoffier (Lyon 1).
 
 ## Tinkercad pour ceux souhaitant terminer sur un simulateur en ligne
 
@@ -13,7 +13,7 @@
 * Vous pouvez ensuite réaliser le circuit avec un Arduino, un board, des LEDs, un LCD...
 * Pour les résistances, attention de bien définir la bonne capacité
 * Ensuite allez dans la partie "code", sélectionnez "Texte" puis vous pouvez coder
-* Pour lancer le code sur l'Arduine, utilisez "Démarrer la simulation"
+* Pour lancer le code sur l'Arduino, utilisez "Démarrer la simulation"
 * Il n'y a pas de main() dans le code, vous devez compléter la fonction setup() pour l'initialisation et la fonction loop() qui tourne dans une boucle infinie pour le reste
 * Adaptez le code fourni pour [TinkerCad](http://tinkercad.com): il faut déplacer et mettre dans setup() et loop()
 * Pour la partie ordonnancement, un squelette vous est fournit pour Tinkercad. Il contient directement toutes les librairies pour éviter les problèmes de compilation
@@ -31,7 +31,7 @@
 
 * Commencez par faire le startup : [startup](_startup_part2.md)
 
-## Step 1 : 2 leds en parallele, avec des timers
+## Step 1 : 2 leds en parallèle, avec des timers
 
 Dans cet exercice, au lieu d'utiliser l'attente active (wait) en
 bidouillant pour réaliser le parallélisme, on se propose d'utiliser

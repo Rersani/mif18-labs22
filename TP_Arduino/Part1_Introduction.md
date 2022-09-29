@@ -1,16 +1,16 @@
-x# MIF18 : Scheduling on Arduino -- Prise en main
+# MIF18 : Scheduling on Arduino -- Prise en main
 
   * Grégoire Pichon, Université Lyon 1, LIP [email](mailto:gregoire.pichon@univ-lyon1.fr)
   * Version: 2022
   * Auteur original: Laure Gonnord
   * Inspiré d'un TP de Julien Forget et Thomas Vantroys, Lille
-  * Autre collaborateur: Thierry Excoffier (Lyon1).
+  * Autre collaborateur: Thierry Excoffier (Lyon 1).
 
 ## Description
 
-Dans ce TP d'introduction, vous écrirez des programmes pour Arduino qui permettent d'intéragir avec des capteurs. L'objectif est double:
-* Manipuler la plateforme et la chaine de compilation
-* Expétimenter deux variantes de programmation Arduino et les comparer (si vous avez le temps)
+Dans ce TP d'introduction, vous écrirez des programmes pour Arduino qui permettent d'interagir avec des capteurs. L'objectif est double:
+* Manipuler la plateforme et la chaîne de compilation
+* Expérimenter deux variantes de programmation Arduino et les comparer (si vous avez le temps)
 
 Pré-requis : Testez votre [setting](_startup_part1.md) Arduino
 
@@ -20,7 +20,7 @@ Pré-requis : Testez votre [setting](_startup_part1.md) Arduino
 
 ![Bouton sur Port Digital 10](figs/p-boutonpoussoir_arduino.png)
 
-*  Ecrivez une fonction `int get_button_state()` qui lit sur le port digital 10 (en utilisant `PINB` value et des opérateurs booléens). Appelez cette fonction dans le `main` pour controler la LED (la switcher d'on a off ou l'inverse si le bouton est pressé).
+*  Écrivez une fonction `int get_button_state()` qui lit sur le port digital 10 (en utilisant `PINB` value et des opérateurs booléens). Appelez cette fonction dans le `main` pour controler la LED (la switcher d'on a off ou l'inverse si le bouton est pressé).
 
 ## Step 2: Deux LEDs avec des fréquences différentes (_code/ex2/)
 
