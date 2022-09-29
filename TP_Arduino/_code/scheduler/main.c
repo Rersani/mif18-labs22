@@ -201,9 +201,15 @@ int main(void)
   // Nothing to do.
   init_led_yellow();// the yellow led blinks to show the sheduler activity.
   init_timer() ;
+  init_serial();
   sei() ;
   while(1) // waits the first task, and then not useful any more.
     {
+      char msg[2]="a\n";
+      send_serial(msg[0]);
+      send_serial(msg[1]);
+      _delay_ms(100);
+
     }
 
   return 0;

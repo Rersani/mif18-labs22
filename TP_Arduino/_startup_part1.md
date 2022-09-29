@@ -1,63 +1,53 @@
-# Arduino 2022 - startup first part
+# Arduino 2022 - startup prise en main
 
-## Pre-installation (Arduino stuff)
+## Pré-installation (Arduino stuff)
 
-![Arduino Uno Platform](figs/arduino-uno-dip-rev3.png)
+![Platforme Arduino Uno](figs/arduino-uno-dip-rev3.png)
 
-  * You may have to install the following (Linux) packages: `arduino` ,
-`gcc-avr` (or `avr-gcc`) and `avrdude` (`avr-binutils` et `avr-libc` if they are not included)
-  * `avrdude.conf` must be in `/usr/share/arduino/hardware/tools/` (if not you have to modify Makefiles).
-  * The user should have the right to write on  the USB port :
+  * Voous devrez surement installer les paquets suivants (Linux): `arduino` ,
+`gcc-avr` (or `avr-gcc`) et `avrdude` (`avr-binutils` et `avr-libc` s'ils ne sont pas inclus)
+  * `avrdude.conf` doit se trouver dans `/usr/share/arduino/hardware/tools/` (sinon il faut modifier les Makefiles).
+  * L'utilisateur doit avoir le droit d'écrire sur le port USB :
 `usermod -aG dialout <username>` (and re-login).
 
 
-## Some Arduino general information
+## Informations générales
 
-Arduino/Genuino cards are free cards build around a Atmel AVR
-microntroler. In this lab we will use  Arduino UNOs (atmega328p) like
-in the following picture. The platform has a few numerical and
-analogic I/Os where we will connect LEDs, buttons, seven segment led
-displays...
+Les cartes Arduino/Genuino utilisent un micro-controlleur AVR
+Atmel. Dans ce TP, nous allons utiliser des Arduino UNOs (atmega328p).
 
-The microcontroler itself is programmed with a bootloader so that a dedicated
-system is not necessary. The Makefile we give you will use   `avrdude`
-[doc](http://www.nongnu.org/avrdude/) to load the binaries into the
-microcontroler memory.
+Le micro-controlleur est lui-même programmé avec un bootloader: il
+n'est pas nécessaire d'avoir un OS. Le Makefile qui vous est fourni
+utilise `avrdude` [doc](http://www.nongnu.org/avrdude/) pour charger
+le binaire sur la mémoire du micro-controlleur.
 
-You will be given a whole platform with an arduino UNO, some leds, a
-breadboard, wires ...  **You will be responsible for them for the
-duration of the lab** On the breadboards, all points in a given
-supply line (blue/black, red) are connected. Same for the columns.
+Nous vous fournissons une plateforme Arduino UNO complète avec des
+LEDs, un breadboard, des cables... **Vous en êtes responsable pendant
+les deux TPs et si vous l'emmenez chez vous pour terminer les TPs**.
 
+## Point de départ avec le breadboard (raw C stuff).
 
-## Getting started with the breadboard (raw C stuff).
-
-First of all, make a simple circuit to test the board itself: 
+Tout d'abord, réalisons un circuit simple afin de tester le board: 
 
 ![Simple led](figs/p-mini_circuit_cut.png)
 
-The board should be powered : blue/black line to arduino ground (GND)
-and red line to arduino +5V. Plug the arduino to the USB port of your
-laptop, the led should shine. 
+Le board doit être alimenté: la ligne bleu/noire sur la terre de
+l'arduino (GND) et la ligne rouge sur le +5V de l'arduino. Si vous
+brancher l'arduino sur un port USB de votre machine, la LED doit
+clignoter. **A partir de maintenant les schémas supposerons que ces deux connections sont établies**/
 
-Now, let us program a blinking LED. 
+### LED sur le port Digital 13
 
-**From now, shematics implicitely contain the wire required to power
-the board (link from red lines to 5V, link from blue/black lines to GND)**
-
-
-### LED on Digital 13
-
-* Led on digital 13 with 220 ohm resistor. (long leg to digital 13)
+* LED sur le port digital 13 avec une résistance de 220 ohm.
 
 ![Arduino Uno + Led on Port Digital 13](figs/p-led_schema1_port13_cut.png)
 
-* TODO : Test the low level code in `_code/blinkingled` (make, make
+* TODO : Tester le code fourni dans `_code/blinkingled` (make, make
   upload)
   
-### Understand Arduino Programming style
+### Comprendre le style de programmation Arduino
 
-Here is the pattern we will use to program the Arduino :
+Voici le schéma que nous utiliserons pour programmer l'Arduino :
 
 ```C
 #include <avr/io.h>
@@ -76,32 +66,30 @@ int main(void)
 }
 ```
 
-The program to embed on the board implements an infinite loop, where the main behavior will be called. The `setup` procedure is used to initialize the board, //e.g.//, specify which pin is used as input or output.
+La partie `setup` correspond à l'initialisation du board, afin de spécifier quels ports sont utilisés en input ou ouput. Le programme implémente une boucle infinie, où le code utilisateur sera appelé.
 
+Afin de changer l'état d'une led de on a off, il faut 
+* configurer le port/pin auquel la led est connecté en
+  _reading mode_ (dans la procédure setup)
+* écrire un 0 (off) ou un 1 (on) sur le même port pour changer l'état.
 
+Quelques informations:
+* Comme la led utilise le pin digital 13, the port a manipuler
+  est DDRB. Tous les pins de 8 à 13 sont configurés en "input" (0)
+  sauf le pin 5 qui fournit un accès "output" à la led (1).
 
-To switch a led on or off on a Arduino, we need to
-* configure the port/pin where the led is connected into
-  _reading mode_ (in the setup procedure)
-* write a 0 (off) or a 1 (on) into the same port when required.
+* Afin de faire clignoter la led, il faut utiliser l'opérateur xor
+  afinde changer le 5ème bit de 0 à 1 ou de 1 à 0 chaque 
+  fois que le code entre dans la boucle: `PORTB ^= 0bxxxxxxxx;' (remplacer x
+  avec les valeurs des bits).
 
-Some information:
-* As the led is linked to digital pin 13, the port to be manipulated
-  is DDRB, here every single pin from 8 to 13 is set to "input" (0)
-  excepting bit 5 which gives an "output" access to the led (1).
+### Documentation complémentaire
 
-* To make  the led blink, use  the xor
-  operator to toggle the 5th bit from 0 to 1 or 1 to 0 each
-  time we enter a different loop: `PORTB ^= 0bxxxxxxxx;' (replace x
-  with bits values).
-
-### Additional documentation (please have a look)
-
-Other links:
-* [port manipulation](https://www.arduino.cc/en/Reference/PortManipulation). Warning,
-the documentation is for the Arduino Lib format. In raw C, you should use
-`0b11111110` (rather than `B11111110`).
-* [Boolean operators](http://playground.arduino.cc/Code/BitMath),
-* [AVR libc doc for delays](http://www.nongnu.org/avr-libc/user-manual/group__util__delay.html).
-* Common error `avrdude:stk500_recv(): programmer is not responding` may be solved by removing the wire connected to digital 1 before uploading.
+Autres liens
+* [Manipulation des ports](https://www.arduino.cc/en/Reference/PortManipulation). Attention,
+cette documentation est dédiée au format "Arduino Lib". En C, vous devez utiliser
+`0b11111110` (plutôt que `B11111110`).
+* [Opérateurs Booléens](http://playground.arduino.cc/Code/BitMath),
+* [AVR libc documentation for "delay"](http://www.nongnu.org/avr-libc/user-manual/group__util__delay.html).
+* Une erreur classique `avrdude:stk500_recv(): programmer is not responding` peut être résolue en enlevant toute conenction au port digital 1 avant l'upload.
 

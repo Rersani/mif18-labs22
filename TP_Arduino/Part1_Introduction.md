@@ -1,4 +1,4 @@
-# MIF18 : Scheduling on Arduino -- first part
+# MIF18 : Scheduling on Arduino -- Prise en main
 
   * Grégoire Pichon, Université Lyon 1, LIP [email](mailto:gregoire.pichon@univ-lyon1.fr)
   * Version: 2022
@@ -17,13 +17,6 @@
 * There is no main() in the code, you have to fill the setup() function and the loop() function that performs an infinite loop
 * Adapt the code for [TinkerCad](http://tinkercad.com): move calls to initialization functions into setup() and the code of while(1) into loop()
 * For the scheduler (part 2), a skeleton for tinkercad is given, to avoid including home made librairies
-
-## TP delivery (mostly the second part of the TP)
-
-* cf [les instructions](http://laure.gonnord.pages.univ-lyon1.fr/advanced-systems/HOWTO_CR_TP_MIF18.md)
-* Give a tgz after make clean (no binary file)
-* One delivery for both part1 and part2
-* One directory per version for the scheduler (part2), please.
 
 ## Problem Description
 
