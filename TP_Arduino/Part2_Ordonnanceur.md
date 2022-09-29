@@ -1,38 +1,37 @@
-# MIF18 : Scheduling on Arduino -- second part
+# MIF18 : Scheduling on Arduino -- Ordonnanceur
 
   * Grégoire Pichon, Université Lyon 1, LIP [email](mailto:gregoire.pichon@univ-lyon1.fr)
   * Version: 2022
-  * Original author Laure Gonnord
-  * Inspired by a lab with Sebastien Mosser, UQAM, Montreal.
-  * Other collaborators: Lionel Morel (Insa Lyon), Julien Forget (Lille).
+  * Auteur original: Laure Gonnord
+  * Inspiré d'un TP de Julien Forget et Thomas Vantroys, Lille
+  * Autre collaborateur: Thierry Excoffier (Lyon1).
 
-## Tinkercad for those following the class remotely
+## Tinkercad pour ceux souhaitant terminer sur un simulateur en ligne
 
-* You have to create an account
-* Then go to Circuits section, and Créer un circuit
-* You can prepare the circuit, adding an Arduino, a board, several LEDs, a LCD...
-* For resistors, you have to properly define the capacity
-* Then go to code section, select Texte and you can start coding
-* Use Démarrer la simulation to run the code on the Arduino
-* There is no main() in the code, you have to fill the setup() function and the loop() function that performs an infinite loop
-* Adapt the code for [TinkerCad](http://tinkercad.com): move calls to initialization functions into setup() and the code of while(1) into loop()
-* For the scheduler (part 2), a skeleton for tinkercad is given, to avoid including home made librairies
+* Vous devez commencer par créer un compte
+* Ensuite aller dans la partie "Circuits" puis "Créer un circuit"
+* Vous pouvez ensuite réaliser le circuit avec un Arduino, un board, des LEDs, un LCD...
+* Pour les résistances, attention de bien définir la bonne capacité
+* Ensuite allez dans la partie "code", sélectionnez "Texte" puis vous pouvez coder
+* Pour lancer le code sur l'Arduine, utilisez "Démarrer la simulation"
+* Il n'y a pas de main() dans le code, vous devez compléter la fonction setup() pour l'initialisation et la fonction loop() qui tourne dans une boucle infinie pour le reste
+* Adaptez le code fourni pour [TinkerCad](http://tinkercad.com): il faut déplacer et mettre dans setup() et loop()
+* Pour la partie ordonnancement, un squelette vous est fournit pour Tinkercad. Il contient directement toutes les librairies pour éviter les problèmes de compilation
 
-## TP delivery (mostly this part of the TP)
+## Rendu du TP
 
-* cf [les instructions](http://laure.gonnord.pages.univ-lyon1.fr/advanced-systems/HOWTO_CR_TP_MIF18.md)
-* Give a tgz after make clean (no binary file)
-* One delivery for both part1 and part2
-* One directory per version for the scheduler (part2), please.
+* Cf. [les instructions](http://laure.gonnord.pages.univ-lyon1.fr/advanced-systems/HOWTO_CR_TP_MIF18.md)
+* Rendre uniquement un tgz après avoir fait un make clean (pas de binaire)
+* Un répertoire à rendre par version de l'ordonnanceur
+* Gardez en tête que l'objectif est d'analyser ce que vous faites et d'avoir du recul (par ex. par rapport à l'ordonnancement Linux)
 
-## Problem Description
+## Description
 
-* In this lab you will implement a simple scheduler for Arduino with
-timers and interruptions.
+* Dans ce TP, vous implémenterez un ordonnanceur simple pour Arduino en utilisant des timers et des interruptions
 
-* Do the startup here : [startup](_startup_part2.md)
+* Commencez par faire le startup : [startup](_startup_part2.md)
 
-## Step 1 : 2 leds in parallel, with timers
+## Step 1 : 2 leds en parallele, avec des timers
 
 Dans cet exercice, au lieu d'utiliser l'attente active (wait) en
 bidouillant pour réaliser le parallélisme, on se propose d'utiliser
@@ -243,6 +242,8 @@ L'ordonnanceur réalisera donc l'algorithme suivant :
 On souhaite maintenant rajouter une tâche supplémentaire qui envoie en
 boucle le caractère `'@'`  sur le port série. Ceci nécessite donc
 de gérer l'accès concurrent au port série entre deux tâches.
+Pour un cas plus réaliste, vous pouvez imaginer deux tâches qui veulent faire
+des logs via le port série.
 
 Vous allez mettre en place un mécanisme simplifié de sémaphores
 permettant d'assurer l'accès en exclusion mutuelle au port série. 
@@ -280,7 +281,7 @@ partagée).
 * Est-ce que l'implémentation de votre ordonnanceur est efficace ?
   Quelle est la complexité dans le pire des cas ?
 
-### Pour aller plus loin
+* Comparez votre approche avec les observations que vous avez pu faire lors du TP "Ordonnancement Linux"
 
 * Ajouter des priorités aux tâches. Comment éviter la famine ?
 
