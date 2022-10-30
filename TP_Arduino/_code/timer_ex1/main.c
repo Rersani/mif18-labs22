@@ -5,7 +5,6 @@
 #include <util/delay.h>    // for the _delay_ms
 
 int int_counter = 0;
-volatile int second = 0;
 
 void init_led_red(void) {
     // TODO : init, red led is on analog 0
@@ -35,8 +34,7 @@ void task_led_red(void) {
 
 ISR(TIMER2_OVF_vect) {
         int_counter += 1;
-        if (int_counter == 1000) { // around each second, blink the led
-            second += 1;
+        if (int_counter == 400) { // around each 400ms, blink the led
             int_counter = 0;
             // TODO : blink the yellow led
             PORTC ^= 0b00000010;
@@ -53,7 +51,6 @@ int main(void) {
     while (1) {
         // TODO : which task(s) ?
         task_led_red();
-        ISR(TIMER2_OVF_vect);
     }
 
     return 0;

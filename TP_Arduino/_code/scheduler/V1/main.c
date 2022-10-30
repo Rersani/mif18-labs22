@@ -146,8 +146,15 @@ void task_serial(void) {
     // TODO : write a message on the serial port, redo, ... Do not forget to init
     init_serial();
     while (1) {
-        send_serial('Yo!');
-        _delay_ms(1000);
+        send_serial('Y');
+        send_serial('o');
+        send_serial('!');
+        send_serial('\n');
+        send_serial('Y');
+        send_serial('o');
+        send_serial('p');
+        send_serial('\n');
+        _delay_ms(100);
     }
 }
 
@@ -156,17 +163,25 @@ void task_led(void) {
     init_led_red();
     while(1) {
         PORTC ^= 0b00000001;
-        _delay_ms(1000);
+        _delay_ms(100);
     }
 }
+
 
 void task_lcd(void) {
     // TODO : init, and send a message (infinite loop)
     init_task_lcd();
+    uint8_t message_lcd[15]= "@@Hello LCD!@@";
+    uint8_t message_lcd2[15]= "@@LCD! Hello@@";
     while(1) {
-        lcd_clear();
-        lcd_puts("Hello World!");
-        _delay_ms(1000);
+        lcd_write_instruction_4d(lcd_Clear);
+        _delay_ms(100);
+        lcd_write_string_4d(message_lcd);
+        _delay_ms(500);
+        lcd_write_instruction_4d(lcd_Clear);
+        _delay_ms(100);
+        lcd_write_string_4d(message_lcd2);
+        _delay_ms(500);
     }
 }
 
@@ -204,6 +219,13 @@ ISR(TIMER2_OVF_vect)
 
                     // TODO : implement the scheduler.
                     current_task = (current_task + 1) % NB_TASK;
+                    if (tasks[current_task].state == RUNNING) {
+                        tasks[current_task].start();
+                    } else {
+                        tasks[current_task].state = RUNNING;
+                        sei();
+                        tasks[current_task].start();
+                    }
                 }
         }
 
